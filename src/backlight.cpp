@@ -1,9 +1,6 @@
 #include "backlight.h"
+#include "normal_mode.h"
 #include <iostream>
-#define BRIGHTNESS_MIN 0x00
-#define BRIGHTNESS_MAX 0x3F
-#define BRIGHTNESS_PERIOD_MIN 0x00
-#define BRIGHTNESS_PERIOD_MAX 0xFF
 #define REGISTER_MIN 0x06
 #define REGISTER_MAX 0x08
 #define NORMAL_MODE 0x06 // Brightness level at normal mode.
@@ -52,31 +49,20 @@ void Backlight::execute()
 }
 
 void Backlight::check_mode(uint8_t _register, uint16_t data)
-{
-    if (_register == NORMAL_MODE || _register == LOW_MODE)
+{ 
+    Mode *normal_mode = new NormalMode();
+    if (_register == NORMAL_MODE )
     {
-        check_brightness_lvl(data);
+        normal_mode->check_brightness_lvl(data);
+    }
+    if(_register == LOW_MODE){
+        
     }
     if (_register == PERIOD_MODE)
     {
-        check_brightness_period(data);
+        //check_brightness_period(data);
     }
-}
-
-void Backlight::check_brightness_lvl(uint16_t data)
-{
-    if (!(data >= BRIGHTNESS_MIN && data <= BRIGHTNESS_MAX))
-    {
-        throw std::out_of_range("Invalid brightness level! ");
-    }
-}
-
-void Backlight::check_brightness_period(uint16_t data)
-{
-    if (!(data >= BRIGHTNESS_PERIOD_MIN && data <= BRIGHTNESS_PERIOD_MAX))
-    {
-        throw std::out_of_range("Invalid brightness period!");
-    }
+    delete normal_mode;
 }
 
 void Backlight::check_register(uint8_t _register)

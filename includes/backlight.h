@@ -15,8 +15,6 @@ public:
               uint16_t data);
     ~Backlight();
     std::vector<uint8_t> get_bytes();
-    void check_brightness_lvl(uint16_t data);
-    void check_brightness_period(uint16_t data);
     void check_register(uint8_t _register);
     void check_mode(uint8_t _register, uint16_t data);
     void execute();
