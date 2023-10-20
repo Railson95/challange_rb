@@ -9,4 +9,3 @@ LowMode::~LowMode()
 {
 
 }
-

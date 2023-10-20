@@ -12,6 +12,7 @@ private:
 public:
     PeriodMode();
     ~PeriodMode();
+    void execute(uint16_t data);
 };
 
 #endif

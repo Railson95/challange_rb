@@ -1,5 +1,5 @@
-#include "../backlight/backlight.h"
-#include "../backlight/mode/mode.h"
+#include "../backlight/command/backlight.h"
+#include "../backlight/mode/factory.h"
 
 #include <iostream>
 #define REGISTER_MIN 0x06
@@ -19,12 +19,11 @@ Backlight::Backlight(uint8_t frame_header_h,
 {
     this->_register = _register;
     this->data = data;
-    check_register(_register);
-    Mode *m = new Mode();
-    m->check_mode(_register, data);
+    BrightnessModeFactory *factory = new BrightnessModeFactory();
+    factory->create_brightness_factory(_register)->execute(data);
     std::cout << "Valor data1: " << static_cast<unsigned int>(data) << std::endl;
     std::cout << "Chamou construtor do backlight" << std::endl;
-    delete m;
+    delete factory;
 }
 
 Backlight::~Backlight() {}
@@ -46,12 +45,4 @@ std::vector<uint8_t> Backlight::get_bytes()
 
 void Backlight::execute()
 {
-}
-
-void Backlight::check_register(uint8_t _register)
-{
-    if (!(_register >= REGISTER_MIN && _register <= REGISTER_MAX))
-    {
-        throw std::out_of_range("Invalid register!");
-    }
 }

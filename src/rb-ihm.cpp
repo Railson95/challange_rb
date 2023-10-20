@@ -1,16 +1,11 @@
 #include <iostream>
 #include <stdexcept>
-#include "../backlight/backlight.h"
+#include "../backlight/command/backlight.h"
 int main()
 {
     
     
     std::cout << "Iniciando desafio..." << std::endl;
-
-    // IMessage *m = new Message(0x00, 0x00, 0x00, 0x00);
-
-    // m->get_bytes();
-
 
     std::cout << "***Chamando a classe BackLight***" << std::endl;
 
@@ -24,6 +19,7 @@ int main()
             std::cout << "[" <<  static_cast<unsigned int>(bytes) << " ]";
         }
         std::cout << std::endl;
+        delete m2;
     }
     catch(const std::exception& e)
     {

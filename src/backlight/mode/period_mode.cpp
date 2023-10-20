@@ -12,3 +12,8 @@ PeriodMode::~PeriodMode()
 
 }
 
+
+void PeriodMode::execute(uint16_t data)
+{
+    check_brightness_period(data);
+}
