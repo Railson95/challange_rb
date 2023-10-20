@@ -1,6 +1,6 @@
 #include <iostream>
 #include <stdexcept>
-#include "backlight.h"
+#include "../backlight/backlight.h"
 int main()
 {
     

@@ -1,11 +1,9 @@
-#include "backlight.h"
-#include "normal_mode.h"
+#include "../backlight/backlight.h"
+#include "../backlight/mode/mode.h"
+
 #include <iostream>
 #define REGISTER_MIN 0x06
 #define REGISTER_MAX 0x08
-#define NORMAL_MODE 0x06 // Brightness level at normal mode.
-#define LOW_MODE 0x07    // Brightness level at low-brightness mode
-#define PERIOD_MODE 0x08 // LCM will enter low-brightness mode
 
 Backlight::Backlight(uint8_t frame_header_h,
                      uint8_t frame_header_l,
@@ -22,9 +20,11 @@ Backlight::Backlight(uint8_t frame_header_h,
     this->_register = _register;
     this->data = data;
     check_register(_register);
-    check_mode(_register, data);
+    Mode *m = new Mode();
+    m->check_mode(_register, data);
     std::cout << "Valor data1: " << static_cast<unsigned int>(data) << std::endl;
     std::cout << "Chamou construtor do backlight" << std::endl;
+    delete m;
 }
 
 Backlight::~Backlight() {}
@@ -46,23 +46,6 @@ std::vector<uint8_t> Backlight::get_bytes()
 
 void Backlight::execute()
 {
-}
-
-void Backlight::check_mode(uint8_t _register, uint16_t data)
-{ 
-    Mode *normal_mode = new NormalMode();
-    if (_register == NORMAL_MODE )
-    {
-        normal_mode->check_brightness_lvl(data);
-    }
-    if(_register == LOW_MODE){
-        
-    }
-    if (_register == PERIOD_MODE)
-    {
-        //check_brightness_period(data);
-    }
-    delete normal_mode;
 }
 
 void Backlight::check_register(uint8_t _register)

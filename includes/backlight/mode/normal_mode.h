@@ -1,4 +1,7 @@
 
+#ifndef NORMAL_MODE_H
+#define NORMAL_MODE_H
+
 #include "mode.h"
 
 
@@ -10,4 +13,6 @@ public:
     NormalMode();
     ~NormalMode();
 };
+
+#endif
 
