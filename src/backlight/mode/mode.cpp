@@ -16,11 +16,15 @@ Mode::~Mode()
     
 }
 
-void Mode::execute(uint16_t data){
+void Mode::execute(std::optional<uint16_t> data){
+    if(!data.has_value()) {
+        std::cout << "Invalid data! " << std::endl;
+        return;
+    }    
     check_brightness_lvl(data);
 }
 
-void Mode::check_brightness_lvl(uint16_t data)
+void Mode::check_brightness_lvl(std::optional<uint16_t> data)
 {
     if (!(data >= BRIGHTNESS_MIN && data <= BRIGHTNESS_MAX))
     {
@@ -28,7 +32,7 @@ void Mode::check_brightness_lvl(uint16_t data)
     }
 }
 
-void Mode::check_brightness_period(uint16_t data)
+void Mode::check_brightness_period(std::optional<uint16_t> data)
 {
     if (!(data >= BRIGHTNESS_PERIOD_MIN && data <= BRIGHTNESS_PERIOD_MAX))
     {

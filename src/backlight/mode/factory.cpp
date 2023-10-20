@@ -17,14 +17,15 @@ BrightnessModeFactory::~BrightnessModeFactory()
     
 }
 
-Mode *BrightnessModeFactory::create_brightness_factory(uint8_t _register)
+Mode *BrightnessModeFactory::create_brightness_factory(std::optional<uint8_t> _register)
 {
     Mode *normal_mode = new NormalMode();
     Mode *low_mode = new LowMode();
     Mode *period_mode = new PeriodMode();
 
+    int result = static_cast<int>(*_register);
 
-    switch (_register)
+    switch (result)
     {
     case NORMAL_MODE:
         return normal_mode;

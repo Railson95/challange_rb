@@ -12,7 +12,7 @@ private:
 public:
     PeriodMode();
     ~PeriodMode();
-    void execute(uint16_t data);
+    void execute(std::optional<uint16_t> data);
 };
 
 #endif

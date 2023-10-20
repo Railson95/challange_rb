@@ -4,16 +4,12 @@ class Backlight : public Message
 {
 private:
     uint8_t _register;
-    uint16_t data;
 
 public:
     Backlight(uint8_t frame_header_h,
               uint8_t frame_header_l,
               uint8_t byte_count,
-              uint8_t command,
-              uint8_t _register,
-              uint16_t data);
+              uint8_t command);
     ~Backlight();
-    std::vector<uint8_t> get_bytes();
     void execute();
 };
