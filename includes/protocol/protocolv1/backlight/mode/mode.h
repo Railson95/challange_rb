@@ -2,11 +2,9 @@
 #ifndef MODE_H
 #define MODE_H
 
-#include <cstdint>
-#include <iostream>
-#include <optional>
+#include "../protocol/protocolv1/backlight/mode/imode.h"
 
-class Mode
+class Mode: public IMode
 {
 private:
 
@@ -15,7 +13,7 @@ public:
     ~Mode();
     void check_brightness_lvl(std::optional<uint16_t> data);
     void check_brightness_period(std::optional<uint16_t> data);
-    void execute(std::optional<uint16_t> data);
+    void check_data(std::optional<uint16_t> data);
 };
 
 #endif

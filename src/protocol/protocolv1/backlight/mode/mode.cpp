@@ -1,5 +1,6 @@
 
-#include "../backlight/mode/mode.h"
+#include "../protocol/protocolv1/backlight/mode/mode.h"
+#include <typeinfo>
 #define BRIGHTNESS_MIN 0x00
 #define BRIGHTNESS_MAX 0x3F
 #define BRIGHTNESS_PERIOD_MIN 0x00
@@ -16,7 +17,9 @@ Mode::~Mode()
     
 }
 
-void Mode::execute(std::optional<uint16_t> data){
+void Mode::check_data(std::optional<uint16_t> data){
+    const std::type_info& tipo = typeid(this);
+    std::cout << "Execute Class { " << tipo.name() << " }" << std::endl;
     if(!data.has_value()) {
         std::cout << "Invalid data! " << std::endl;
         return;

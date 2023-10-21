@@ -11,7 +11,7 @@ private:
 public:
     BrightnessModeFactory(/* args */);
     ~BrightnessModeFactory();
-    Mode *create_brightness_factory(std::optional<uint8_t> _register);
+    IMode *create_brightness_factory(std::optional<uint8_t> _register);
 };
 
 #endif
