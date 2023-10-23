@@ -65,12 +65,12 @@ uint8_t Backlight::calc_byte_count()
     }
 }
 
-uint8_t Backlight::get_memory_max()
+uint16_t Backlight::get_memory_max()
 {
     return 0xFF;
 }
 
-uint8_t Backlight::get_memory_addrs()
+uint16_t Backlight::get_memory_address()
 {
     std::optional<uint8_t> _register = get_register();
     if(!_register.has_value()){

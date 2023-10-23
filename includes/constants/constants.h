@@ -2,3 +2,4 @@
 #define FRAME_HEADER_L 0xA5
 #define WRITE_REGISTER 0x80
 #define READ_REGISTER 0x81
+#define WRITE_VP 0x82

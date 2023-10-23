@@ -21,6 +21,6 @@ target_include_directories(challange_rentbrella PRIVATE ${CMAKE_CURRENT_SOURCE_D
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/backlight/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/backlight/mode
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/message
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/message/qrcode/message
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/qrcode/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/ihm
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/constants)

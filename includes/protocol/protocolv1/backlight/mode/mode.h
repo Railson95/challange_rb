@@ -11,7 +11,7 @@ private:
 public:
     Mode();
     ~Mode();
-    void check_brightness_lvl(std::optional<uint8_t>  data);
+    void check_brightness_lvl(std::optional<uint8_t> data);
     void check_data(std::optional<std::vector<uint8_t>> data);
 };
 
