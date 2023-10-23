@@ -5,10 +5,8 @@
 
 Backlight::Backlight(uint8_t frame_header_h,
                      uint8_t frame_header_l,
-                     uint8_t byte_count,
                      uint8_t command) : Message(frame_header_h,
                                                 frame_header_l,
-                                                byte_count,
                                                 command)
 
 {
@@ -26,7 +24,10 @@ void Backlight::execute()
 
     data = this->get_data();
 
+    this->set_byte_count(this->calc_byte_count());
+
     if(data.has_value()){
+        
         mode->check_data(get_data());
         if(is_memory_overflow())
         {
@@ -45,12 +46,29 @@ void Backlight::execute()
 
 }
 
+uint8_t Backlight::calc_byte_count()
+{
+    uint8_t size_lenght = (this->get_lenght().has_value())? 1:0;
+    uint8_t size_data = (this->get_data().has_value())? this->get_data().value().size():0; 
+    size_t cmd_reg = 2; // lenght cmd plus register
+
+    if(this->get_lenght().has_value() && this->get_data().has_value()){
+        return size_lenght + size_data + cmd_reg;
+    }
+
+    if(this->get_lenght().has_value()){
+        return size_lenght + cmd_reg;
+    }
+
+    if(this->get_data().has_value()){
+        return this->get_data().value().size() + cmd_reg;
+    }
+}
 
 uint8_t Backlight::get_memory_max()
 {
     return 0xFF;
 }
-
 
 uint8_t Backlight::get_memory_addrs()
 {

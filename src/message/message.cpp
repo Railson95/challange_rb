@@ -3,12 +3,10 @@
 
 Message::Message(uint8_t frame_header_h,
                  uint8_t frame_header_l,
-                 uint8_t byte_count,
                  uint8_t command)
 {
     this->frame_header_h = frame_header_h;
     this->frame_header_l = frame_header_l;
-    this->byte_count = byte_count;
     this->command = command;
     std::cout << "Chamou o construtor da message" << std::endl;
 }
@@ -18,6 +16,7 @@ Message::~Message(){}
 uint8_t Message::get_frame_header_h(){
     return this->frame_header_h;
 }
+
 uint8_t Message::get_frame_header_l(){
     return this->frame_header_l;
 }
@@ -26,6 +25,10 @@ uint8_t Message::get_byte_count(){
 }
 uint8_t Message::get_command(){
     return this->command;
+}
+
+std::optional<uint8_t> Message::get_lenght(){
+    return this->lenght;
 }
 
 std::optional<uint8_t> Message::get_register()
@@ -57,6 +60,11 @@ void Message::set_length(std::optional<uint8_t> lenght)
     this->lenght = lenght;
 }
 
+void Message::set_byte_count(uint8_t byte_count)
+{
+    this->byte_count = byte_count;
+}
+
 std::vector<std::optional<uint8_t>> Message::get_bytes()
 {
     std::vector<std::optional<uint8_t>> bytes;
@@ -65,7 +73,7 @@ std::vector<std::optional<uint8_t>> Message::get_bytes()
 
     bytes.push_back(this->get_frame_header_h());
     bytes.push_back(this->get_frame_header_l());
-    bytes.push_back(this->get_byte_count());
+    bytes.push_back(this->byte_count);
     bytes.push_back(this->get_command());
     bytes.push_back(this->_register);
     if (this->lenght.has_value())

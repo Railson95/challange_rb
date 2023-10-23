@@ -21,7 +21,7 @@ uint8_t Protocolv1::get_backlight_level()
         std::cout << "Operating mode not yet defined" << std::endl;
         return 0;
     }
-    Backlight *backlight = new Backlight(FRAME_HEADER_H, FRAME_HEADER_L, 0X03, READ_REGISTER);
+    Backlight *backlight = new Backlight(FRAME_HEADER_H, FRAME_HEADER_L, READ_REGISTER);
     backlight->set_register(get_operation_mode());
     backlight->set_length(BACKLIGHT_LENGHT);
     backlight->execute();
@@ -32,7 +32,7 @@ uint8_t Protocolv1::get_backlight_level()
 
 void Protocolv1::set_backlight_level(uint8_t operation_mode, uint8_t level)
 {
-    Backlight *backlight = new Backlight(FRAME_HEADER_H, FRAME_HEADER_L, 0x03, WRITE_REGISTER);
+    Backlight *backlight = new Backlight(FRAME_HEADER_H, FRAME_HEADER_L, WRITE_REGISTER);
     backlight->set_register(operation_mode);
     std::vector<uint8_t> data;
     data.push_back(level);
