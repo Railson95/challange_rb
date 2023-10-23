@@ -5,6 +5,7 @@ add_executable(challange_rentbrella
     ../src/rb-ihm.cpp
     ../src/message/message.cpp
     ../src/protocol/protocolv1/backlight/message/backlight.cpp
+    ../src/protocol/protocolv1/qrcode/message/qrcode.cpp
     ../src/protocol/protocolv1/backlight/mode/mode.cpp
     ../src/protocol/protocolv1/backlight/mode/normal_mode.cpp
     ../src/protocol/protocolv1/backlight/mode/low_mode.cpp
@@ -20,5 +21,6 @@ target_include_directories(challange_rentbrella PRIVATE ${CMAKE_CURRENT_SOURCE_D
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/backlight/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/backlight/mode
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/message
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/message/qrcode/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/ihm
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/constants)
