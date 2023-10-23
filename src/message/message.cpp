@@ -33,7 +33,7 @@ std::optional<uint8_t> Message::get_register()
     return this->_register;
 }
 
-std::optional<uint16_t> Message::get_data()
+std::optional<std::vector<uint8_t>> Message::get_data()
 {
     return this->data;
 }
@@ -48,7 +48,7 @@ void Message::set_register(std::optional<uint8_t> _register)
     this->_register = _register;
 }
 
-void Message::set_data(std::optional<uint16_t> data)
+void Message::set_data(std::optional<std::vector<uint8_t>> data)
 {
     this->data = data;
 }
@@ -71,7 +71,25 @@ std::vector<std::optional<uint8_t>> Message::get_bytes()
     if (this->lenght.has_value())
         bytes.push_back(this->lenght);
     if (this->data.has_value())
-        bytes.push_back(this->data);
+        for(auto data: this->data.value()){
+            bytes.push_back(data);
+        }
 
     return bytes;
+}
+
+bool Message::is_memory_overflow()
+{
+    uint8_t max = this->get_memory_max();
+    const std::type_info& tipo = typeid(this);
+    std::string class_name = tipo.name();
+    
+    uint8_t start_memory_addrs = this->get_memory_addrs();// vp or register
+    
+    if(this->data.value().size() > max - start_memory_addrs){
+        std::cout << "Invalid data size {" + class_name + "}" << std::endl;
+        return true;
+    }
+
+    return false;
 }

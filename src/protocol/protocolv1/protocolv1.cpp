@@ -34,7 +34,9 @@ void Protocolv1::set_backlight_level(uint8_t operation_mode, uint8_t level)
 {
     Backlight *backlight = new Backlight(FRAME_HEADER_H, FRAME_HEADER_L, 0x03, WRITE_REGISTER);
     backlight->set_register(operation_mode);
-    backlight->set_data(level);
+    std::vector<uint8_t> data;
+    data.push_back(level);
+    backlight->set_data(data);
     this->set_operation_mode(operation_mode);
     backlight->execute();
 }

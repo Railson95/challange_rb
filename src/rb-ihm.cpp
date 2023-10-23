@@ -12,7 +12,7 @@ int main()
     try
     {
         Ihm *ihm = new Ihm(protocol_type);
-        ihm->set_backlight_level(0x08, 0x3F);
+        ihm->set_backlight_level(0x06, 0x2F);
         ihm->get_backlight_level();
         delete ihm;
     }

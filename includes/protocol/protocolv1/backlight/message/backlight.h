@@ -12,4 +12,6 @@ public:
               uint8_t command);
     ~Backlight();
     void execute();
+    uint8_t get_memory_max();
+    uint8_t get_memory_addrs();
 };

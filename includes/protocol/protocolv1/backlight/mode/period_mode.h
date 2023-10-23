@@ -12,7 +12,7 @@ private:
 public:
     PeriodMode();
     ~PeriodMode();
-    void check_data(std::optional<uint16_t> data);
+    void check_data(std::optional<std::vector<uint8_t>> data);
 };
 
 #endif

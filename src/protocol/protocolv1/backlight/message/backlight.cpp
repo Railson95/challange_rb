@@ -20,7 +20,20 @@ Backlight::~Backlight() {}
 void Backlight::execute()
 {
     BrightnessModeFactory *factory = new BrightnessModeFactory();
-    factory->create_brightness_factory(get_register())->check_data(get_data());
+    IMode *mode = factory->create_brightness_factory(get_register());
+
+    std::optional<std::vector<uint8_t>> data;
+
+    data = this->get_data();
+
+    if(data.has_value()){
+        mode->check_data(get_data());
+        if(is_memory_overflow())
+        {
+            throw std::overflow_error("Memory Overflow! ");
+        }
+    }
+
     std::cout << "Escreve bytes na UART: ";
     for (auto bytes : this->get_bytes())
     {
@@ -31,3 +44,21 @@ void Backlight::execute()
     delete factory;
 
 }
+
+
+uint8_t Backlight::get_memory_max()
+{
+    return 0xFF;
+}
+
+
+uint8_t Backlight::get_memory_addrs()
+{
+    std::optional<uint8_t> _register = get_register();
+    if(!_register.has_value()){
+        std::cout << "Invalid Register! " << std::endl;
+        return true;
+    }
+    return _register.value();
+}
+

@@ -12,7 +12,7 @@ private:
     uint8_t byte_count;
     uint8_t command;
     std::optional<uint8_t> _register;
-    std::optional<uint16_t> data;
+    std::optional<std::vector<uint8_t>> data;
     std::optional<uint8_t> lenght;
 public:
     Message(uint8_t frame_header_h,
@@ -26,9 +26,10 @@ public:
     uint8_t get_byte_count();
     uint8_t get_command();
     std::optional<uint8_t> get_register();
-    std::optional<uint16_t> get_data();
+    std::optional<std::vector<uint8_t>>  get_data();
+    bool is_memory_overflow();
     void set_register(std::optional<uint8_t> _register);
-    void set_data(std::optional<uint16_t> data);
+    void set_data(std::optional<std::vector<uint8_t>>  data);
     void set_length(std::optional<uint8_t> lenght);
     void execute();
 };
