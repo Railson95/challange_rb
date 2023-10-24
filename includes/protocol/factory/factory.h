@@ -10,7 +10,7 @@ private:
 public:
     ProtocolFactory(/* args */);
     ~ProtocolFactory();
-    IProtocol *create_protocol(std::string protocol_type);
+    std::unique_ptr<IProtocol> create_protocol(std::string protocol_type);
     int to_int(std::string protocol_type);
 };
 

@@ -11,11 +11,10 @@ int main()
     std::string protocol_type = "protocolv1";
     try
     {
-        Ihm *ihm = new Ihm(protocol_type);
+        std::unique_ptr<Ihm> ihm = std::make_unique<Ihm>(protocol_type); 
         ihm->set_backlight_level(0x06, 0x2F);
         ihm->get_backlight_level();
         ihm->set_qrcode_value(0x2040, "Hello RentBrella!");
-        delete ihm;
     }
     catch (const std::exception &e)
     {

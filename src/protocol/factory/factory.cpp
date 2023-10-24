@@ -11,9 +11,9 @@ ProtocolFactory::~ProtocolFactory()
     
 }
 
-IProtocol *ProtocolFactory::create_protocol(std::string protocol_type)
+std::unique_ptr<IProtocol> ProtocolFactory::create_protocol(std::string protocol_type)
 {
-    Protocolv1 *protocolv1 = new Protocolv1(); 
+    std::unique_ptr<Protocolv1> protocolv1 = std::make_unique<Protocolv1>(); 
 
     int result = to_int(protocol_type); 
 

@@ -2,6 +2,7 @@
 #define IPROTOCOL_H
 #include <cstdint>
 #include <iostream>
+#include <memory>
 class IProtocol
 {
 private:

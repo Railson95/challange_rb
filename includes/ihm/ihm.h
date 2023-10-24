@@ -7,7 +7,7 @@
 class Ihm: public IIhm
 {
 private:
-    IProtocol *protocol = nullptr;
+    std::unique_ptr<IProtocol> protocol = nullptr;
 public:
     Ihm(std::string protocol_type);
     ~Ihm();

@@ -11,7 +11,7 @@ private:
 public:
     IProtocolFactory(/* args */){}
     ~IProtocolFactory(){}
-    virtual IProtocol *create_protocol(std::string protocol_type) = 0;
+    virtual std::unique_ptr<IProtocol> create_protocol(std::string protocol_type) = 0;
     virtual int to_int(std::string protocol_type) = 0;
 };
 

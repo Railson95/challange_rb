@@ -11,7 +11,7 @@ private:
 public:
     IBrightnessModeFactory(/* args */){}
     ~IBrightnessModeFactory(){}
-    virtual IMode *create_brightness_factory(std::optional<uint8_t> _register) = 0;
+    virtual std::unique_ptr<IMode> create_brightness_factory(std::optional<uint8_t> _register) = 0;
 };
 
 #endif

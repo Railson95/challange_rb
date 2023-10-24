@@ -6,6 +6,7 @@
 #include <iostream>
 #include <optional>
 #include <vector>
+#include <memory>
 
 class IMode
 {

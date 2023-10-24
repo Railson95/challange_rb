@@ -17,8 +17,8 @@ Backlight::~Backlight() {}
 
 void Backlight::execute()
 {
-    BrightnessModeFactory *factory = new BrightnessModeFactory();
-    IMode *mode = factory->create_brightness_factory(get_register());
+    std::unique_ptr<BrightnessModeFactory> factory = std::make_unique<BrightnessModeFactory>();
+    std::unique_ptr<IMode> mode = factory->create_brightness_factory(get_register());
 
     std::optional<std::vector<uint8_t>> data;
 
@@ -41,8 +41,6 @@ void Backlight::execute()
         std::cout << "[" << static_cast<int>(*bytes) << " ]";
     }
     std::cout << std::endl;
-
-    delete factory;
 
 }
 

@@ -3,9 +3,8 @@
 
 Ihm::Ihm(std::string protocol_type): IIhm()
 {
-    ProtocolFactory *protocol_factory = new ProtocolFactory();
+    std::unique_ptr<ProtocolFactory> protocol_factory = std::make_unique<ProtocolFactory>();
     this->protocol = protocol_factory->create_protocol(protocol_type);
-    delete protocol_factory;
 }
 
 Ihm::~Ihm()

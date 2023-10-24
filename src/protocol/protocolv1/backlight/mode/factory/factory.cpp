@@ -18,11 +18,11 @@ BrightnessModeFactory::~BrightnessModeFactory()
     
 }
 
-IMode *BrightnessModeFactory::create_brightness_factory(std::optional<uint8_t> _register)
+std::unique_ptr<IMode> BrightnessModeFactory::create_brightness_factory(std::optional<uint8_t> _register)
 {
-    IMode *normal_mode = new NormalMode();
-    IMode *low_mode = new LowMode();
-    IMode *period_mode = new PeriodMode();
+    std::unique_ptr<IMode> normal_mode = std::make_unique<NormalMode>();
+    std::unique_ptr<IMode> low_mode = std::make_unique<LowMode>();
+    std::unique_ptr<IMode> period_mode = std::make_unique<PeriodMode>();
 
     int result = static_cast<int>(*_register);
 
