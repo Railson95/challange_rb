@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.27.7) 
 project(challange_rentbrella)
 set(CMAKE_CXX_STANDARD 17)
+
 add_executable(challange_rentbrella 
     ../src/rb-ihm.cpp
     ../src/message/message.cpp
@@ -15,6 +16,8 @@ add_executable(challange_rentbrella
     ../src/protocol/factory/factory.cpp
     ../src/protocol/protocolv1/protocolv1.cpp
     ../src/protocol/protocol.cpp)
+add_subdirectory(src/uart)
+target_link_libraries(challange_rentbrella PRIVATE rbuart)
 target_include_directories(challange_rentbrella PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/factory
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1

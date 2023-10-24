@@ -1,5 +1,6 @@
 #include "../protocol/protocolv1/backlight/message/backlight.h"
 #include "../protocol/protocolv1/backlight/mode/factory/factory.h"
+#include "../uart/uart.h"
 #include <iostream>
 
 
@@ -34,6 +35,10 @@ void Backlight::execute()
             throw std::overflow_error("Memory Overflow! ");
         }
     }
+
+    std::cout << "*************************" << std::endl;
+    Uart *u = new Uart();
+    std::cout << "*************************" << std::endl;
 
     std::cout << "Escreve bytes na UART: ";
     for (auto bytes : this->get_bytes())
