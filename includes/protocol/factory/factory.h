@@ -1,10 +1,9 @@
 #ifndef FACTORY_H
 #define FACTORY_H
 
-#include "../iprotocol.h"
-#include <string>
+#include "ifactory.h"
 
-class ProtocolFactory
+class ProtocolFactory: public IProtocolFactory
 {
 private:
     /* data */

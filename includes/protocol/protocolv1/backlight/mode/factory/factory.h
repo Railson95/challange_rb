@@ -1,10 +1,9 @@
 #ifndef BRIGHTNESS_MODE_FACTORY_H
 #define BRIGHTNESS_MODE_FACTORY_H
 
-#include "mode.h"
+#include "ifactory.h"
 
-
-class BrightnessModeFactory
+class BrightnessModeFactory: public IBrightnessModeFactory
 {
 private:
     /* data */

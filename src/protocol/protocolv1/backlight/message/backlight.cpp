@@ -1,5 +1,5 @@
 #include "../protocol/protocolv1/backlight/message/backlight.h"
-#include "../protocol/protocolv1/backlight/mode/factory.h"
+#include "../protocol/protocolv1/backlight/mode/factory/factory.h"
 #include <iostream>
 
 

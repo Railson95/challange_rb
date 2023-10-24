@@ -53,6 +53,7 @@ void Protocolv1::set_qrcode_value(int qrcode_address_vp, char *qrcode_text)
     qrcode->set_vp_address(vp_address);
     qrcode->set_data(qrcode_text);
     qrcode->execute();
+    delete qrcode;
 }
 
 

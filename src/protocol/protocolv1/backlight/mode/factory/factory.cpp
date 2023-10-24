@@ -1,4 +1,4 @@
-#include "../protocol/protocolv1/backlight/mode/factory.h"
+#include "../protocol/protocolv1/backlight/mode/factory/factory.h"
 #include "../protocol/protocolv1/backlight/mode/normal_mode.h"
 #include "../protocol/protocolv1/backlight/mode/low_mode.h"
 #include "../protocol/protocolv1/backlight/mode/period_mode.h"
