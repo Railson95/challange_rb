@@ -9,6 +9,7 @@ private:
 public:
     Uart(/* args */);
     ~Uart();
+    void send(unsigned char *data, size_t data_len);
 };
 
 #endif // !1

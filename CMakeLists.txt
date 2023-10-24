@@ -15,7 +15,8 @@ add_executable(challange_rentbrella
     ../src/ihm/ihm.cpp
     ../src/protocol/factory/factory.cpp
     ../src/protocol/protocolv1/protocolv1.cpp
-    ../src/protocol/protocol.cpp)
+    ../src/protocol/protocol.cpp
+    ../src/utils/utils.cpp)
 add_subdirectory(src/uart)
 target_link_libraries(challange_rentbrella PRIVATE rbuart)
 target_include_directories(challange_rentbrella PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes
@@ -27,4 +28,6 @@ target_include_directories(challange_rentbrella PRIVATE ${CMAKE_CURRENT_SOURCE_D
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/qrcode/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/ihm
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/constants)
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/constants
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/utils
+    )

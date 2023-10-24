@@ -1,6 +1,7 @@
 #include "../protocol/protocolv1/backlight/message/backlight.h"
 #include "../protocol/protocolv1/backlight/mode/factory/factory.h"
 #include "../uart/uart.h"
+#include "../utils/utils.h"
 #include <iostream>
 
 
@@ -36,15 +37,11 @@ void Backlight::execute()
         }
     }
 
-    std::cout << "*************************" << std::endl;
     Uart *u = new Uart();
-    std::cout << "*************************" << std::endl;
-
-    std::cout << "Escreve bytes na UART: ";
-    for (auto bytes : this->get_bytes())
-    {
-        std::cout << "[" << static_cast<int>(*bytes) << " ]";
-    }
+    Utils *utils = new Utils();
+    size_t bytes_length = this->get_bytes().size();
+    unsigned char * bytes = utils->to_char_pointer(this->get_bytes());
+    u->send(bytes, bytes_length);
     std::cout << std::endl;
 
 }

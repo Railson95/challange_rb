@@ -1,5 +1,7 @@
 
 #include "../protocol/protocolv1/qrcode/message/qrcode.h"
+#include "../utils/utils.h"
+#include "../uart/uart.h"
 
 QRCode::QRCode(uint8_t frame_header_h,
                uint8_t frame_header_l,
@@ -28,11 +30,17 @@ void QRCode::execute()
         }
     }
 
-    std::cout << "Escreve bytes na UART: ";
-    for (auto bytes : this->get_bytes())
-    {
-        std::cout << "[" << static_cast<int>(*bytes) << " ]";
-    }
+    Uart *u = new Uart();
+    Utils *utils = new Utils();
+    size_t bytes_length = this->get_bytes().size();
+    unsigned char * bytes = utils->to_char_pointer(this->get_bytes());
+    u->send(bytes, bytes_length);
+
+    // std::cout << "Escreve bytes na UART: ";
+    // for (auto bytes : this->get_bytes())
+    // {
+    //     std::cout << "[" << static_cast<int>(*bytes) << " ]";
+    // }
     std::cout << std::endl;
 }
 
