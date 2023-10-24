@@ -49,10 +49,8 @@ void Protocolv1::set_qrcode_value(int qrcode_address_vp, char *qrcode_text)
     std::cout << "Send info - QRCode" << std::endl;
 
     QRCode *qrcode = new QRCode(FRAME_HEADER_H, FRAME_HEADER_L, WRITE_VP);
-    uint16_t i_vp_address = static_cast<uint16_t>(qrcode_address_vp);
-    std::vector<uint16_t> vp_adderss;
-    vp_adderss.push_back(i_vp_address);
-    qrcode->set_vp_address(vp_adderss);
+    uint16_t vp_address = static_cast<uint16_t>(qrcode_address_vp);
+    qrcode->set_vp_address(vp_address);
     qrcode->set_data(qrcode_text);
     qrcode->execute();
 }

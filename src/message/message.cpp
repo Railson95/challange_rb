@@ -41,7 +41,7 @@ std::optional<std::vector<uint8_t>> Message::get_data()
     return this->data;
 }
 
-std::optional<std::vector<uint16_t>> Message::get_vp_address()
+std::optional<uint16_t> Message::get_vp_address()
 {
     return this->vp_address;
 }
@@ -69,12 +69,16 @@ void Message::set_data(char *data)
         return;
     }
 
-   std::optional<std::vector<uint8_t>> result = std::vector<uint8_t>();
+    std::optional<std::vector<uint8_t>> result = std::vector<uint8_t>();
 
     for (size_t i = 0; data[i] != '\0'; i++)
     {
         result.value().push_back(static_cast<uint8_t>(data[i]));
     }
+
+    //To be the same as exercise b.1.b, I didn't understand why
+    result.value().push_back('\0'); 
+    result.value().push_back('\0');
 
     this->data = result;
     
@@ -94,13 +98,12 @@ std::vector<std::optional<uint8_t>> Message::get_bytes()
 {
     std::vector<std::optional<uint8_t>> bytes;
 
-    // std::cout << "Valor data2: " << static_cast<unsigned int>(this->data) << std::endl;
-
     bytes.push_back(this->get_frame_header_h());
     bytes.push_back(this->get_frame_header_l());
     bytes.push_back(this->byte_count);
     bytes.push_back(this->get_command());
-    bytes.push_back(this->_register);
+    if(this->_register.has_value())
+        bytes.push_back(this->_register);
     if(this->vp_address.has_value()){
         std::vector<uint8_t> split_vp = split_vp_address();
         for(auto vp: split_vp)
@@ -132,7 +135,7 @@ bool Message::is_memory_overflow()
     return false;
 }
 
-void Message::set_vp_address(std::optional<std::vector<uint16_t>> vp_address)
+void Message::set_vp_address(std::optional<uint16_t> vp_address)
 {
     this->vp_address = vp_address;
 }
@@ -150,18 +153,14 @@ std::vector<uint8_t> Message::split_vp_address()
         throw std::invalid_argument("Invalid vp address {" + class_name + "}");
     }
 
-    std::vector<uint16_t> vp_address;
-    vp_address = this->get_vp_address().value();
+    uint16_t vp_address;
 
-    for(auto a: vp_address)
-    {
-        low_byte = static_cast<uint8_t>(a & 0xFF); 
-        high_byte = static_cast<uint8_t>((a >> 8) & 0xFF); 
-    }
-
+    vp_address = this->vp_address.value();
+    low_byte = static_cast<uint8_t>(vp_address & 0xFF); 
+    high_byte = static_cast<uint8_t>((vp_address >> 8) & 0xFF); 
+    
     splited.push_back(low_byte);
     splited.push_back(high_byte);
 
     return splited;
-
 }
