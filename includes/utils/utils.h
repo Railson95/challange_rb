@@ -11,7 +11,6 @@ private:
     /* data */
 public:
     Utils(/* args */);
-    ~Utils();
     unsigned char *to_char_pointer(std::vector<std::optional<uint8_t>> bytes);
 };
 

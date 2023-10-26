@@ -1,5 +1,9 @@
 #include "../includes/message/message.h"
+#include "../protocol/protocolv1/igenericbyte.h"
+#include "../uart/uart.h"
+#include "../utils/utils.h"
 #include <iostream>
+#include <memory>
 
 Message::Message(uint8_t frame_header_h,
                  uint8_t frame_header_l,
@@ -11,23 +15,28 @@ Message::Message(uint8_t frame_header_h,
     std::cout << "Chamou o construtor da message" << std::endl;
 }
 
-Message::~Message(){}
+Message::~Message() {}
 
-uint8_t Message::get_frame_header_h(){
+uint8_t Message::get_frame_header_h()
+{
     return this->frame_header_h;
 }
 
-uint8_t Message::get_frame_header_l(){
+uint8_t Message::get_frame_header_l()
+{
     return this->frame_header_l;
 }
-uint8_t Message::get_byte_count(){
+uint8_t Message::get_byte_count()
+{
     return this->byte_count;
 }
-uint8_t Message::get_command(){
+uint8_t Message::get_command()
+{
     return this->command;
 }
 
-std::optional<uint8_t> Message::get_lenght(){
+std::optional<uint8_t> Message::get_lenght()
+{
     return this->lenght;
 }
 
@@ -58,7 +67,7 @@ void Message::set_data(std::optional<std::vector<uint8_t>> data)
 
 void Message::set_data(char *data)
 {
-    if(nullptr == data)
+    if (nullptr == data)
     {
         std::cout << "Data is empty! " << std::endl;
         return;
@@ -71,12 +80,11 @@ void Message::set_data(char *data)
         result.value().push_back(static_cast<uint8_t>(data[i]));
     }
 
-    //To be the same as exercise b.1.b, I didn't understand why
-    result.value().push_back('\0'); 
+    // To be the same as exercise b.1.b, I didn't understand why
+    result.value().push_back('\0');
     result.value().push_back('\0');
 
     this->data = result;
-    
 }
 
 void Message::set_length(std::optional<uint8_t> lenght)
@@ -97,17 +105,19 @@ std::vector<std::optional<uint8_t>> Message::get_bytes()
     bytes.push_back(this->get_frame_header_l());
     bytes.push_back(this->byte_count);
     bytes.push_back(this->get_command());
-    if(this->_register.has_value())
+    if (this->_register.has_value())
         bytes.push_back(this->_register);
-    if(this->vp_address.has_value()){
+    if (this->vp_address.has_value())
+    {
         std::vector<uint8_t> split_vp = split_vp_address();
-        for(auto vp: split_vp)
+        for (auto vp : split_vp)
             bytes.push_back(vp);
     }
     if (this->lenght.has_value())
         bytes.push_back(this->lenght);
     if (this->data.has_value())
-        for(auto data: this->data.value()){
+        for (auto data : this->data.value())
+        {
             bytes.push_back(data);
         }
 
@@ -117,12 +127,13 @@ std::vector<std::optional<uint8_t>> Message::get_bytes()
 bool Message::is_memory_overflow()
 {
     uint16_t max = this->get_memory_max();
-    const std::type_info& tipo = typeid(this);
+    const std::type_info &tipo = typeid(this);
     std::string class_name = tipo.name();
-    
-    uint16_t start_memory_addrs = this->get_memory_address();// vp or register
-    
-    if(this->data.value().size() > max - start_memory_addrs){
+
+    uint16_t start_memory_addrs = this->get_memory_address(); // vp or register
+
+    if (this->data.value().size() > max - start_memory_addrs)
+    {
         std::cout << "Invalid data size {" + class_name + "}" << std::endl;
         return true;
     }
@@ -137,13 +148,13 @@ void Message::set_vp_address(std::optional<uint16_t> vp_address)
 
 std::vector<uint8_t> Message::split_vp_address()
 {
-    const std::type_info& tipo = typeid(this);
+    const std::type_info &tipo = typeid(this);
     std::string class_name = tipo.name();
     uint8_t low_byte = 0;
     uint8_t high_byte = 0;
     std::vector<uint8_t> splited;
 
-    if(!this->vp_address.has_value())
+    if (!this->vp_address.has_value())
     {
         throw std::invalid_argument("Invalid vp address {" + class_name + "}");
     }
@@ -151,9 +162,9 @@ std::vector<uint8_t> Message::split_vp_address()
     uint16_t vp_address;
 
     vp_address = this->vp_address.value();
-    low_byte = static_cast<uint8_t>(vp_address & 0xFF); 
-    high_byte = static_cast<uint8_t>((vp_address >> 8) & 0xFF); 
-    
+    low_byte = static_cast<uint8_t>(vp_address & 0xFF);
+    high_byte = static_cast<uint8_t>((vp_address >> 8) & 0xFF);
+
     splited.push_back(low_byte);
     splited.push_back(high_byte);
 
@@ -162,19 +173,22 @@ std::vector<uint8_t> Message::split_vp_address()
 
 uint8_t Message::calc_byte_count()
 {
-    uint8_t size_lenght = (this->get_lenght().has_value())? 1:0;
-    uint8_t size_data = (this->get_data().has_value())? this->get_data().value().size():0; 
+    uint8_t size_lenght = (this->get_lenght().has_value()) ? 1 : 0;
+    uint8_t size_data = (this->get_data().has_value()) ? this->get_data().value().size() : 0;
     size_t cmd_reg = 2; // lenght cmd plus register
 
-    if(this->get_lenght().has_value() && this->get_data().has_value()){
+    if (this->get_lenght().has_value() && this->get_data().has_value())
+    {
         return size_lenght + size_data + cmd_reg;
     }
 
-    if(this->get_lenght().has_value()){
+    if (this->get_lenght().has_value())
+    {
         return size_lenght + cmd_reg;
     }
 
-    if(this->get_data().has_value()){
+    if (this->get_data().has_value())
+    {
         return this->get_data().value().size() + cmd_reg;
     }
 }
@@ -187,9 +201,33 @@ uint16_t Message::get_memory_max()
 uint16_t Message::get_memory_address()
 {
     std::optional<uint8_t> _register = get_register();
-    if(!_register.has_value()){
+    if (!_register.has_value())
+    {
         std::cout << "Invalid Register! " << std::endl;
         return true;
     }
     return _register.value();
+}
+
+void Message::process_and_send_data(const std::optional<std::vector<uint8_t>> &data,
+                                    std::optional<std::unique_ptr<IGenericByte>> &generic_byte) 
+{
+    if (data.has_value())
+    {
+        if(generic_byte.has_value()){
+            generic_byte.value().get()->check_data(data);
+        }
+
+        if (is_memory_overflow())
+        {
+            throw std::overflow_error("Memory Overflow! ");
+        }
+    }
+
+    Uart uart;
+    Utils utils;
+    size_t bytes_length = this->get_bytes().size();
+    unsigned char *bytes = utils.to_char_pointer(this->get_bytes());
+    uart.send(bytes, bytes_length);
+    std::cout << std::endl;
 }

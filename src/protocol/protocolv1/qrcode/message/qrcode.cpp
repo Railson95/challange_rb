@@ -1,7 +1,5 @@
 
 #include "../protocol/protocolv1/qrcode/message/qrcode.h"
-#include "../utils/utils.h"
-#include "../uart/uart.h"
 
 QRCode::QRCode(uint8_t frame_header_h,
                uint8_t frame_header_l,
@@ -17,31 +15,12 @@ QRCode::~QRCode()
 
 void QRCode::execute()
 {
-    std::optional<std::vector<uint8_t>> data;
+    std::optional<std::vector<uint8_t>> data = this->get_data();
+    std::optional<std::unique_ptr<IGenericByte>> opcional1 = std::nullopt;
+    size_t byte_count = calc_byte_count();
+    set_byte_count(byte_count); 
 
-    data = this->get_data();
-
-    this->set_byte_count(this->calc_byte_count());
-
-    if(data.has_value()){
-        if(is_memory_overflow())
-        {
-            throw std::overflow_error("Memory Overflow! ");
-        }
-    }
-
-    Uart *u = new Uart();
-    Utils *utils = new Utils();
-    size_t bytes_length = this->get_bytes().size();
-    unsigned char * bytes = utils->to_char_pointer(this->get_bytes());
-    u->send(bytes, bytes_length);
-
-    // std::cout << "Escreve bytes na UART: ";
-    // for (auto bytes : this->get_bytes())
-    // {
-    //     std::cout << "[" << static_cast<int>(*bytes) << " ]";
-    // }
-    std::cout << std::endl;
+    this->process_and_send_data(data, opcional1);
 }
 
 uint16_t QRCode::get_memory_max()

@@ -1,6 +1,8 @@
 #ifndef IMESSAGE_H
 #define IMESSAGE_H
 
+#include "../protocol/protocolv1/igenericbyte.h"
+#include <memory>
 #include <vector>
 #include <cstdint>
 

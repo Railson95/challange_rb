@@ -2,13 +2,14 @@
 #ifndef IMODE_H
 #define IMODE_H
 
+#include "igenericbyte.h"
 #include <cstdint>
 #include <iostream>
 #include <optional>
 #include <vector>
 #include <memory>
 
-class IMode
+class IMode: public IGenericByte
 {
 private:
 

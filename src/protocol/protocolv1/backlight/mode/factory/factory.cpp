@@ -16,6 +16,10 @@ BrightnessModeFactory::~BrightnessModeFactory()
 
 std::unique_ptr<IMode> BrightnessModeFactory::create_brightness_factory(std::optional<uint8_t> _register)
 {
+    if (!_register.has_value()) {
+        throw std::invalid_argument("Invalid register: No value provided.");
+    }
+
     std::unique_ptr<IMode> normal_mode = std::make_unique<NormalMode>();
     std::unique_ptr<IMode> low_mode = std::make_unique<LowMode>();
     std::unique_ptr<IMode> period_mode = std::make_unique<PeriodMode>();
@@ -45,7 +49,6 @@ std::unique_ptr<IMode> BrightnessModeFactory::create_brightness_factory(std::opt
     {
         return period_mode;
     }
-    
-   
+
 
 }

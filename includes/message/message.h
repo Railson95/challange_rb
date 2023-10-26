@@ -5,7 +5,7 @@
 #include <string>
 #include <iostream>
 #include "imessage.h"
-class Message: public IMessage
+class Message : public IMessage
 {
 private:
     uint8_t frame_header_h;
@@ -16,6 +16,7 @@ private:
     std::optional<std::vector<uint8_t>> data;
     std::optional<uint8_t> lenght;
     std::optional<uint16_t> vp_address;
+
 public:
     Message(uint8_t frame_header_h,
             uint8_t frame_header_l,
@@ -36,11 +37,13 @@ public:
     std::optional<std::vector<uint8_t>> get_data();
     bool is_memory_overflow();
     void set_register(std::optional<uint8_t> _register);
-    void set_data(std::optional<std::vector<uint8_t>>  data);
+    void set_data(std::optional<std::vector<uint8_t>> data);
     void set_data(char *data);
     void set_length(std::optional<uint8_t> lenght);
     void set_byte_count(uint8_t byte_count);
-    void set_vp_address(std::optional<uint16_t> vp_address); 
+    void set_vp_address(std::optional<uint16_t> vp_address);
+    void process_and_send_data(const std::optional<std::vector<uint8_t>> &data,
+                               std::optional<std::unique_ptr<IGenericByte>> &generic_byte);
 };
 
 #endif
