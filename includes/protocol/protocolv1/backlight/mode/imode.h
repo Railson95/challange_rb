@@ -15,8 +15,8 @@ private:
 public:
     IMode(){}
     ~IMode(){}
-    virtual void check_brightness_lvl(std::optional<uint8_t> data) = 0;
     virtual void check_data(std::optional<std::vector<uint8_t>> data) = 0;
+    virtual uint8_t get_valid_register() = 0;
 };
 
 #endif

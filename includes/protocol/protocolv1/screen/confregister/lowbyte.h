@@ -9,7 +9,7 @@ private:
 public:
     LowByteRegister(/* args */);
     ~LowByteRegister();
-    uint8_t get_byte();
+    uint8_t get_valid_register();
 };
 
 #endif

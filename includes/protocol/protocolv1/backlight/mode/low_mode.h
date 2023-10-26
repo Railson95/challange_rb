@@ -8,10 +8,11 @@
 class LowMode: public Mode
 {
 private:
-
+    uint8_t low_mode;
 public:
     LowMode();
     ~LowMode();
+    uint8_t get_valid_register();
 };
 
 

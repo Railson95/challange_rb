@@ -20,9 +20,13 @@ std::unique_ptr<IByte> FactoryScreen::create_screen_factory(std::optional<uint8_
     std::unique_ptr<IByte> low = std::make_unique<LowByteRegister>();
 
     int result_register =  static_cast<int>(*_register);
-    int result_high = high->get_byte();
-    int result_low = low->get_byte();
+    int result_high = high->get_valid_register();
+    int result_low = low->get_valid_register();
 
+    if(!(result_register >= result_high && result_register <= result_low))
+    {
+         throw std::out_of_range("Invalid register!");
+    }
 
     if(result_high == result_register)
     {
@@ -33,22 +37,5 @@ std::unique_ptr<IByte> FactoryScreen::create_screen_factory(std::optional<uint8_
     {
         return low;
     }
-
-    throw std::out_of_range("Invalid register!");
-
-    // switch (result_register)
-    // {
-    // case result_high:
-    //     return high;
-    //     break;
-
-    // case result_low:
-    //     return low;
-    //     break;
-    
-    // default:
-    //     throw std::out_of_range("Invalid register!");
-    //     break;
-    // }
 
 }

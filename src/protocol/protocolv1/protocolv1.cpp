@@ -62,6 +62,9 @@ void Protocolv1::set_screen(int id)
 
     std::unique_ptr<Screen> screen = 
         std::make_unique<Screen>(FRAME_HEADER_H, FRAME_HEADER_L, WRITE_REGISTER);
-    // screen->set_data(qrcode_text);
+    std::vector<uint8_t> data;
+    data.push_back(0x3F);
+    screen->set_register(0x0D);
+    screen->set_data(data);
     screen->execute();
 }

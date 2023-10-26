@@ -46,11 +46,6 @@ std::optional<uint16_t> Message::get_vp_address()
     return this->vp_address;
 }
 
-void Message::execute()
-{
-
-}
-
 void Message::set_register(std::optional<uint8_t> _register)
 {
     this->_register = _register;
@@ -163,4 +158,38 @@ std::vector<uint8_t> Message::split_vp_address()
     splited.push_back(high_byte);
 
     return splited;
+}
+
+uint8_t Message::calc_byte_count()
+{
+    uint8_t size_lenght = (this->get_lenght().has_value())? 1:0;
+    uint8_t size_data = (this->get_data().has_value())? this->get_data().value().size():0; 
+    size_t cmd_reg = 2; // lenght cmd plus register
+
+    if(this->get_lenght().has_value() && this->get_data().has_value()){
+        return size_lenght + size_data + cmd_reg;
+    }
+
+    if(this->get_lenght().has_value()){
+        return size_lenght + cmd_reg;
+    }
+
+    if(this->get_data().has_value()){
+        return this->get_data().value().size() + cmd_reg;
+    }
+}
+
+uint16_t Message::get_memory_max()
+{
+    return 0xFF;
+}
+
+uint16_t Message::get_memory_address()
+{
+    std::optional<uint8_t> _register = get_register();
+    if(!_register.has_value()){
+        std::cout << "Invalid Register! " << std::endl;
+        return true;
+    }
+    return _register.value();
 }

@@ -10,7 +10,7 @@ private:
 public:
     HighByteRegister(/* args */);
     ~HighByteRegister();
-    uint8_t get_byte();
+    uint8_t get_valid_register();
 };
 
 

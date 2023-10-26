@@ -10,7 +10,4 @@ public:
               uint8_t command);
     ~Screen();
     void execute();
-    uint16_t get_memory_max();
-    uint16_t get_memory_address();
-    uint8_t calc_byte_count();
 };

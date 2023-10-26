@@ -12,7 +12,7 @@ LowByteRegister::~LowByteRegister()
 }
 
 
-uint8_t LowByteRegister::get_byte()
+uint8_t LowByteRegister::get_valid_register()
 {
     return this->low_byte;
 }

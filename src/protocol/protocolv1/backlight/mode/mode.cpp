@@ -3,9 +3,6 @@
 #include <typeinfo>
 #define BRIGHTNESS_MIN 0x00
 #define BRIGHTNESS_MAX 0x3F
-#define BRIGHTNESS_PERIOD_MIN 0x00
-#define BRIGHTNESS_PERIOD_MAX 0xFF
-
 
 Mode::Mode()
 {

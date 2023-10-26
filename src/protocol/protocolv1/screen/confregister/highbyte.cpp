@@ -12,7 +12,7 @@ HighByteRegister::~HighByteRegister()
     
 }
 
-uint8_t HighByteRegister::get_byte()
+uint8_t HighByteRegister::get_valid_register()
 {
     return this->high_byte;
 }

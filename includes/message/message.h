@@ -21,6 +21,9 @@ public:
             uint8_t frame_header_l,
             uint8_t command);
     ~Message();
+    uint16_t get_memory_max();
+    uint16_t get_memory_address();
+    uint8_t calc_byte_count();
     std::vector<std::optional<uint8_t>> get_bytes();
     std::vector<uint8_t> split_vp_address();
     uint8_t get_frame_header_h();
@@ -38,7 +41,6 @@ public:
     void set_length(std::optional<uint8_t> lenght);
     void set_byte_count(uint8_t byte_count);
     void set_vp_address(std::optional<uint16_t> vp_address); 
-    void execute();
 };
 
 #endif
