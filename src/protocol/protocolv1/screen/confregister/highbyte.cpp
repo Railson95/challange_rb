@@ -1,4 +1,4 @@
-#include "../highbyte/highbyte.h"
+#include "../protocol/protocolv1/screen/confregister/highbyte.h"
 
 
 HighByteRegister::HighByteRegister()
@@ -6,6 +6,11 @@ HighByteRegister::HighByteRegister()
     this->high_byte = 0x0D;
 }
 
+
+HighByteRegister::~HighByteRegister()
+{
+    
+}
 
 uint8_t HighByteRegister::get_byte()
 {

@@ -3,7 +3,6 @@
 class Backlight : public Message
 {
 private:
-    uint8_t _register;
 
 public:
     Backlight(uint8_t frame_header_h,

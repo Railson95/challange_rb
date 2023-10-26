@@ -15,6 +15,7 @@ int main()
         ihm->set_backlight_level(0x06, 0x2F);
         ihm->get_backlight_level();
         ihm->set_qrcode_value(0x2040, "Hello RentBrella!");
+        ihm->set_screen(0x3F);
     }
     catch (const std::exception &e)
     {

@@ -1,6 +1,6 @@
 #ifndef LOW_BYTE_H
 #define LOW_BYTE_H
-#include "../byte/byte.h"
+#include "byte.h"
 
 class LowByteRegister: public Byte
 {

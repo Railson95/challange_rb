@@ -1,9 +1,14 @@
-#include "../lowbyte/lowbyte.h"
+#include "../protocolv1/screen/confregister/lowbyte.h"
 
 
 LowByteRegister::LowByteRegister()
 {
     this->low_byte = 0x0E;
+}
+
+LowByteRegister::~LowByteRegister()
+{
+    
 }
 
 

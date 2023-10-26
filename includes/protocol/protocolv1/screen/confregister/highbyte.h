@@ -1,7 +1,7 @@
 #ifndef HIGH_BYTE_H
 #define HIGH_BYTE_H
 #include <cstdint>
-#include "../byte/byte.h"
+#include "byte.h"
 
 class HighByteRegister: public Byte
 {

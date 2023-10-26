@@ -25,3 +25,8 @@ void Ihm::set_qrcode_value(int qrcode_address_vp, char *qrcode_text)
 {
     this->protocol->set_qrcode_value(qrcode_address_vp, qrcode_text);
 }
+
+void Ihm::set_screen(int id)
+{
+    this->protocol->set_screen(id);
+}

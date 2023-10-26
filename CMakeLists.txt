@@ -12,10 +12,13 @@ add_executable(challange_rentbrella
     ../src/protocol/protocolv1/backlight/mode/low_mode.cpp
     ../src/protocol/protocolv1/backlight/mode/period_mode.cpp
     ../src/protocol/protocolv1/backlight/mode/factory/factory.cpp
-    ../src/protocol/protocolv1/screen/confregister/byte/byte.cpp
-    ../src/protocol/protocolv1/screen/confregister/highbyte/highbyte.cpp
-    ../src/protocol/protocolv1/screen/confregister/lowbyte/lowbyte.cpp
-    ../src/protocol/protocolv1/screen/factory/factory.cpp
+    #../src/protocol/protocolv1/screen/confregister/byte/byte.cpp
+    #../src/protocol/protocolv1/screen/confregister/highbyte/highbyte.cpp
+    #../src/protocol/protocolv1/screen/confregister/lowbyte/lowbyte.cpp
+    ../src/protocol/protocolv1/screen/confregister/byte.cpp
+    ../src/protocol/protocolv1/screen/confregister/highbyte.cpp
+    ../src/protocol/protocolv1/screen/confregister/lowbyte.cpp
+    ../src/protocol/protocolv1/screen/confregister/factory/factory.cpp
     ../src/protocol/protocolv1/screen/message/screen.cpp
     ../src/ihm/ihm.cpp
     ../src/protocol/factory/factory.cpp
@@ -30,10 +33,12 @@ target_include_directories(challange_rentbrella PRIVATE ${CMAKE_CURRENT_SOURCE_D
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/backlight/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/backlight/mode
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/backlight/mode/factory
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister/byte
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister/highbyte
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister/lowbyte
-    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/factory
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister
+    #PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister/byte
+    #PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister/highbyte
+    #PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister/lowbyte
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confregister/factory
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/qrcode/message

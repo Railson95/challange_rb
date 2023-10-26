@@ -1,6 +1,7 @@
 #include "../protocol/protocolv1/protocolv1.h"
 #include "../protocol/protocolv1/backlight/message/backlight.h"
 #include "../protocol/protocolv1/qrcode/message/qrcode.h"
+#include "../protocol/protocolv1/screen/message/screen.h"
 #include "../constants/constants.h"
 
 #define BACKLIGHT_LENGHT 0x01
@@ -52,4 +53,15 @@ void Protocolv1::set_qrcode_value(int qrcode_address_vp, char *qrcode_text)
     qrcode->set_vp_address(vp_address);
     qrcode->set_data(qrcode_text);
     qrcode->execute();
+}
+
+
+void Protocolv1::set_screen(int id)
+{
+    std::cout << "Send info - Screen" << std::endl;
+
+    std::unique_ptr<Screen> screen = 
+        std::make_unique<Screen>(FRAME_HEADER_H, FRAME_HEADER_L, WRITE_REGISTER);
+    // screen->set_data(qrcode_text);
+    screen->execute();
 }

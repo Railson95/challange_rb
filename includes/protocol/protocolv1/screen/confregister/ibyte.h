@@ -2,6 +2,7 @@
 #define IBYTE_H
 #include <cstdint>
 
+
 class IByte
 {
 private:
