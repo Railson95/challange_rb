@@ -33,7 +33,7 @@ std::unique_ptr<IByte> FactoryScreen::create_screen_factory(std::optional<uint8_
         return high;
     }
 
-    if(result_high == result_register)
+    if(result_low == result_register)
     {
         return low;
     }
