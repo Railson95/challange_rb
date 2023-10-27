@@ -11,7 +11,7 @@ class IMessage
 public:
     IMessage(){}
     virtual ~IMessage(){}
-    virtual std::vector<std::optional<uint8_t>> get_bytes() = 0;
+    virtual std::vector<uint8_t> get_bytes() = 0;
     virtual uint8_t get_frame_header_h() = 0;
     virtual uint8_t get_frame_header_l() = 0;
     virtual uint8_t get_command() = 0;

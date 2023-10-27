@@ -97,16 +97,16 @@ void Message::set_byte_count(uint8_t byte_count)
     this->byte_count = byte_count;
 }
 
-std::vector<std::optional<uint8_t>> Message::get_bytes()
+std::vector<uint8_t> Message::get_bytes()
 {
-    std::vector<std::optional<uint8_t>> bytes;
+    std::vector<uint8_t> bytes;
 
     bytes.push_back(this->get_frame_header_h());
     bytes.push_back(this->get_frame_header_l());
     bytes.push_back(this->byte_count);
     bytes.push_back(this->get_command());
     if (this->_register.has_value())
-        bytes.push_back(this->_register);
+        bytes.push_back(this->_register.value());
     if (this->vp_address.has_value())
     {
         std::vector<uint8_t> split_vp = split_vp_address();
@@ -114,7 +114,7 @@ std::vector<std::optional<uint8_t>> Message::get_bytes()
             bytes.push_back(vp);
     }
     if (this->lenght.has_value())
-        bytes.push_back(this->lenght);
+        bytes.push_back(this->lenght.value());
     if (this->data.has_value())
         for (auto data : this->data.value())
         {
@@ -223,16 +223,8 @@ void Message::process_and_send_data(const std::optional<std::vector<uint8_t>> &d
             throw std::overflow_error("Memory Overflow! ");
         }
     }
-    std::vector<std::optional<uint8_t>> temp_bytes = this->get_bytes();
 
-    std::vector<uint8_t> bytes;
-
-    for(auto byte: temp_bytes){
-        if(byte.has_value())
-        {
-            bytes.push_back(byte.value());
-        }
-    }
+    std::vector<uint8_t> bytes = this->get_bytes();
 
     std::cout << "Write serial: " << std::endl;
     for(auto a: bytes){
