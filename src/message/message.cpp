@@ -223,11 +223,28 @@ void Message::process_and_send_data(const std::optional<std::vector<uint8_t>> &d
             throw std::overflow_error("Memory Overflow! ");
         }
     }
+    std::vector<std::optional<uint8_t>> temp_bytes = this->get_bytes();
+
+    std::vector<uint8_t> bytes;
+
+    for(auto byte: temp_bytes){
+        if(byte.has_value())
+        {
+            bytes.push_back(byte.value());
+        }
+    }
+
+    std::cout << "Write serial: " << std::endl;
+    for(auto a: bytes){
+        std::cout << "[" << static_cast<int>(a) << "]";
+    }
+
+    std::cout << std::endl;
 
     Uart uart;
     Utils utils;
-    size_t bytes_length = this->get_bytes().size();
-    unsigned char *bytes = utils.to_char_pointer(this->get_bytes());
-    uart.send(bytes, bytes_length);
+    size_t bytes_length = bytes.size();
+    unsigned char *c_bytes = utils.to_char_pointer(bytes);
+    uart.send(c_bytes, bytes_length);
     std::cout << std::endl;
 }

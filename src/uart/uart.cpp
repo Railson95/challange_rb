@@ -7,7 +7,7 @@ Uart::Uart()
 
 Uart::~Uart()
 {
-    // std::cout << "Chamou construtor da Uart.." << std::endl;
+
 }
 
 void Uart::send(unsigned char *data, size_t data_len)
@@ -18,5 +18,6 @@ void Uart::send(unsigned char *data, size_t data_len)
     {
         std::cout << std::hex << std::setfill('0') << std::setw(2) << int(data[i]);
     }
+
     std::cout << " (" << data_len << " bytes)" << std::endl;
 }
