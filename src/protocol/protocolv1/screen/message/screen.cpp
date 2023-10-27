@@ -1,5 +1,5 @@
 #include "../protocol/protocolv1/screen/message/screen.h"
-#include "../protocol/protocolv1/screen/confregister/factory/factory.h"
+#include "../protocol/protocolv1/screen/confpicid/factory/factory.h"
 #include "../protocol/protocolv1/igenericbyte.h"
 
 Screen::Screen(uint8_t frame_header_h,

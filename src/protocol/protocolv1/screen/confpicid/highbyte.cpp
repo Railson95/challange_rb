@@ -1,4 +1,4 @@
-#include "../protocol/protocolv1/screen/confregister/highbyte.h"
+#include "../protocol/protocolv1/screen/confpicid/highbyte.h"
 
 
 HighByteRegister::HighByteRegister()

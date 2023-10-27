@@ -1,7 +1,7 @@
-#include "../protocol/protocolv1/screen/confregister/ibyte.h"
-#include "../protocol/protocolv1/screen/confregister/highbyte.h"
-#include "../protocol/protocolv1/screen/confregister/lowbyte.h"
-#include "../protocol/protocolv1/screen/confregister/factory/factory.h"
+#include "../protocol/protocolv1/screen/confpicid/ibyte.h"
+#include "../protocol/protocolv1/screen/confpicid/highbyte.h"
+#include "../protocol/protocolv1/screen/confpicid/lowbyte.h"
+#include "../protocol/protocolv1/screen/confpicid/factory/factory.h"
 
 FactoryScreen::FactoryScreen()
 {

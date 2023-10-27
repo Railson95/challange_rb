@@ -1,7 +1,7 @@
 #ifndef BYTE_H
 #define BYTE_H
 
-#include "../protocol/protocolv1/screen/confregister/ibyte.h"
+#include "../protocol/protocolv1/screen/confpicid/ibyte.h"
 
 
 class Byte: public IByte

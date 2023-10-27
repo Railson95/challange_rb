@@ -1,5 +1,5 @@
 
-#include "../protocol/protocolv1/screen/confregister/byte.h"
+#include "../protocol/protocolv1/screen/confpicid/byte.h"
 #include <typeinfo>
 #include <string>
 #include <optional>

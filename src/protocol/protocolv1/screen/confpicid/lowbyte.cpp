@@ -1,4 +1,4 @@
-#include "../protocolv1/screen/confregister/lowbyte.h"
+#include "../protocolv1/screen/confpicid/lowbyte.h"
 
 
 LowByteRegister::LowByteRegister()
