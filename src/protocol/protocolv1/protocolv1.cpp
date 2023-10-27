@@ -63,7 +63,7 @@ void Protocolv1::set_screen(int id)
     std::unique_ptr<Screen> screen = 
         std::make_unique<Screen>(FRAME_HEADER_H, FRAME_HEADER_L, WRITE_REGISTER);
     std::vector<uint8_t> data;
-    data.push_back(0x3F);
+    data.push_back(id);
     screen->set_register(0x0D);
     screen->set_data(data);
     screen->execute();
