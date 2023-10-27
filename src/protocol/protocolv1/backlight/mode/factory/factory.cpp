@@ -49,6 +49,4 @@ std::unique_ptr<IMode> BrightnessModeFactory::create_brightness_factory(std::opt
     {
         return period_mode;
     }
-
-
 }

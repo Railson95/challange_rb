@@ -11,7 +11,7 @@ private:
     uint8_t low_mode;
 public:
     LowMode();
-    ~LowMode();
+    virtual ~LowMode();
     uint8_t get_valid_register();
 };
 

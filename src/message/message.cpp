@@ -191,6 +191,7 @@ uint8_t Message::calc_byte_count()
     {
         return this->get_data().value().size() + cmd_reg;
     }
+    return 0;
 }
 
 uint16_t Message::get_memory_max()

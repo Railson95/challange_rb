@@ -10,7 +10,7 @@ private:
    
 public:
     IGenericByte(/* args */){}
-    ~IGenericByte(){}
+    virtual ~IGenericByte(){}
     virtual uint8_t get_valid_register() = 0;
     virtual void check_data(std::optional<std::vector<uint8_t>> data) = 0;
 };

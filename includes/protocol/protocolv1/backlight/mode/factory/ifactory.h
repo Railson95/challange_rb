@@ -10,7 +10,7 @@ private:
     /* data */
 public:
     IBrightnessModeFactory(/* args */){}
-    ~IBrightnessModeFactory(){}
+    virtual ~IBrightnessModeFactory(){}
     virtual std::unique_ptr<IMode> create_brightness_factory(std::optional<uint8_t> _register) = 0;
 };
 

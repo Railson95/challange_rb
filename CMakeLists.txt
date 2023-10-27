@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.27.7) 
 project(challange_rentbrella)
 set(CMAKE_CXX_STANDARD 17)
-
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-return-type")
 add_executable(challange_rentbrella 
     ../src/rb-ihm.cpp
     ../src/message/message.cpp

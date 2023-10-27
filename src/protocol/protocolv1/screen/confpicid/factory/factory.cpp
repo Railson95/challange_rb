@@ -15,7 +15,10 @@ FactoryScreen::~FactoryScreen()
 
 std::unique_ptr<IByte> FactoryScreen::create_screen_factory(std::optional<uint8_t> _register)
 {
-
+    if (!_register.has_value()) {
+        throw std::invalid_argument("Invalid register: No value provided.");
+    }
+    
     std::unique_ptr<IByte> high = std::make_unique<HighByteRegister>();
     std::unique_ptr<IByte> low = std::make_unique<LowByteRegister>();
 
