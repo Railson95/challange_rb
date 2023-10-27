@@ -1,0 +1,14 @@
+# Necessary Tools
+Valgrind
+Clang 
+CMake
+Make
+
+# how to compile? 
+Enter in folder build and type
+1) cmake -DCMAKE_CXX_COMPILER=clang++ -DCMAKE_C_COMPILER=clang ..
+2) make
+3) ./challange_rentbrella
+
+# how to use Valgrind to check memory leak?
+valgrind --leak-check=full --show-leak-kinds=all ./challange_rentbrella
