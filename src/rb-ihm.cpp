@@ -4,10 +4,6 @@
 
 int main()
 {
-
-    std::cout << "Iniciando desafio..." << std::endl;
-
-    std::cout << "***Chamando a classe BackLight***" << std::endl;
     std::string protocol_type = "protocolv1";
     char msg[] = "Hello RentBrella!";
     try

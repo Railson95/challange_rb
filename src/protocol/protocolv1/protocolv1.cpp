@@ -33,6 +33,7 @@ uint8_t Protocolv1::get_backlight_level()
 
 void Protocolv1::set_backlight_level(uint8_t operation_mode, uint8_t level)
 {
+    std::cout << "Send info - Backlight" << std::endl;
     std::unique_ptr<Backlight> backlight =
         std::make_unique<Backlight>(FRAME_HEADER_H, FRAME_HEADER_L, WRITE_REGISTER);
     backlight->set_register(operation_mode);

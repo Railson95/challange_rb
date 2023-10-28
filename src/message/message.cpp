@@ -12,7 +12,11 @@ Message::Message(uint8_t frame_header_h,
     this->frame_header_h = frame_header_h;
     this->frame_header_l = frame_header_l;
     this->command = command;
-    std::cout << "Chamou o construtor da message" << std::endl;
+    this->byte_count = 0;
+    this->_register = std::nullopt;
+    this->data = std::nullopt;
+    this->lenght = std::nullopt;
+    this->vp_address = std::nullopt;
 }
 
 Message::~Message() {}
@@ -234,10 +238,10 @@ void Message::process_and_send_data(const std::optional<std::vector<uint8_t>> &d
 
     std::cout << std::endl;
 
-    Uart uart;
-    Utils utils;
+    std::unique_ptr<Uart> uart = std::make_unique<Uart>(); 
+    std::unique_ptr<Utils> utils = std::make_unique<Utils>(); 
     size_t bytes_length = bytes.size();
-    unsigned char *c_bytes = utils.to_char_pointer(bytes);
-    uart.send(c_bytes, bytes_length);
+    unsigned char *c_bytes = utils->to_char_pointer(bytes);
+    uart->send(c_bytes, bytes_length);
     std::cout << std::endl;
 }

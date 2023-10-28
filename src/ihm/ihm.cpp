@@ -3,6 +3,7 @@
 
 Ihm::Ihm(std::string protocol_type): IIhm()
 {
+    this->protocol = nullptr;
     std::unique_ptr<ProtocolFactory> protocol_factory = std::make_unique<ProtocolFactory>();
     this->protocol = protocol_factory->create_protocol(protocol_type);
 }

@@ -2,7 +2,6 @@
 #include <iomanip>
 Uart::Uart()
 {
-    std::cout << "Chamou construtor da Uart.." << std::endl;
 }
 
 Uart::~Uart()

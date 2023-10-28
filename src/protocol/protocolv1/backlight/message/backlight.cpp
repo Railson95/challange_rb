@@ -11,7 +11,6 @@ Backlight::Backlight(uint8_t frame_header_h,
                                                 command)
 
 {
-    std::cout << "Chamou construtor do backlight" << std::endl;
 }
 
 Backlight::~Backlight() {}
