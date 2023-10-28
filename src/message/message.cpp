@@ -19,6 +19,18 @@ Message::Message(uint8_t frame_header_h,
     this->vp_address = std::nullopt;
 }
 
+Message::Message(const Message &other)
+    : frame_header_h(other.frame_header_h),
+      frame_header_l(other.frame_header_l),
+      command(other.command),
+      byte_count(other.byte_count),
+      _register(other._register),
+      data(other.data),
+      lenght(other.lenght),
+      vp_address(other.vp_address)
+{
+}
+
 Message::~Message() {}
 
 uint8_t Message::get_frame_header_h()

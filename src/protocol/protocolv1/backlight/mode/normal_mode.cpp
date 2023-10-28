@@ -6,6 +6,11 @@ NormalMode::NormalMode():Mode()
     this->normal_mode = NORMAL_MODE;
 }
 
+NormalMode::NormalMode(const NormalMode &other)
+    : normal_mode(other.normal_mode)
+{
+}
+
 NormalMode::~NormalMode()
 {
 

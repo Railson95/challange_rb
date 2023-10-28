@@ -11,6 +11,7 @@ private:
     uint8_t normal_mode;
 public:
     NormalMode();
+    NormalMode(const NormalMode &other);
     ~NormalMode();
     uint8_t get_valid_register();
 };

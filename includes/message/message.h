@@ -21,6 +21,7 @@ public:
     Message(uint8_t frame_header_h,
             uint8_t frame_header_l,
             uint8_t command);
+    Message(const Message &other);
     ~Message();
     uint16_t get_memory_max();
     uint16_t get_memory_address();
