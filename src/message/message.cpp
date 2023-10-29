@@ -175,14 +175,14 @@ std::vector<uint8_t> Message::split_vp_address()
         throw std::invalid_argument("Invalid vp address {" + class_name + "}");
     }
 
-    uint16_t vp_address;
+    uint16_t vp_address = 0x0000;
 
     vp_address = this->vp_address.value();
     low_byte = static_cast<uint8_t>(vp_address & 0xFF);
     high_byte = static_cast<uint8_t>((vp_address >> 8) & 0xFF);
 
-    splited.push_back(low_byte);
     splited.push_back(high_byte);
+    splited.push_back(low_byte);
 
     return splited;
 }

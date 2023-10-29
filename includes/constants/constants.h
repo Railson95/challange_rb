@@ -3,3 +3,4 @@
 #define WRITE_REGISTER 0x80
 #define READ_REGISTER 0x81
 #define WRITE_VP 0x82
+#define READ_VP 0x83

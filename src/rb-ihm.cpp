@@ -13,6 +13,7 @@ int main()
         ihm->get_backlight_level();
         ihm->set_qrcode_value(0x2040, msg);
         ihm->set_screen(0x3F);
+        ihm->get_button_value(0x2040);
     }
     catch (const std::exception &e)
     {

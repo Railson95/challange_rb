@@ -31,3 +31,8 @@ void Ihm::set_screen(int id)
 {
     this->protocol->set_screen(id);
 }
+
+int Ihm::get_button_value(int button_address_vp)
+{
+    this->protocol->get_button_value(button_address_vp);
+}

@@ -1,5 +1,5 @@
-#ifndef BUTTON_H
-#define BUTTON_H
+#ifndef MESSAGEVP_H
+#define MESSAGEVP_H
 
 #include "message.h"
 

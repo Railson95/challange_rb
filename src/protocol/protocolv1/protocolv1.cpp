@@ -2,9 +2,11 @@
 #include "../protocol/protocolv1/backlight/message/backlight.h"
 #include "../protocol/protocolv1/qrcode/message/qrcode.h"
 #include "../protocol/protocolv1/screen/message/screen.h"
+#include "../protocol/protocolv1/button/message/button.h"
 #include "../constants/constants.h"
 
 #define BACKLIGHT_LENGHT 0x01
+#define BUTTON_LENGHT 0x01
 
 Protocolv1::Protocolv1()
 {
@@ -68,4 +70,16 @@ void Protocolv1::set_screen(int id)
     screen->set_register(0x0D);
     screen->set_data(data);
     screen->execute();
+}
+
+int Protocolv1::get_button_value(int button_address_vp)
+{
+    std::cout << "Send info - Button" << std::endl;
+
+    std::unique_ptr<Button> button = 
+        std::make_unique<Button>(FRAME_HEADER_H, FRAME_HEADER_L, READ_VP);
+    uint16_t vp_address = static_cast<uint16_t>(button_address_vp);
+    button->set_vp_address(vp_address);
+    button->set_length(BUTTON_LENGHT);
+    button->execute();
 }
