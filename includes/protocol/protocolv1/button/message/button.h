@@ -1,20 +1,21 @@
-#ifndef QRCODE_H
-#define QRCODE_H
+#ifndef BUTTON_H
+#define BUTTON_H
 
-#include "messagevp.h"
+#include "../message/messagere.h"
 
-class QRCode : public MessageVP
+class Button : public MessageRE
 {
 private:
     
 public:
-    QRCode(uint8_t frame_header_h,
+    Button(uint8_t frame_header_h,
               uint8_t frame_header_l,
               uint8_t command);
-    ~QRCode();
+    ~Button();
     void execute();
     void set_data(char *data);
     void set_vp_address(std::optional<uint16_t> vp_address);
 };
+
 
 #endif

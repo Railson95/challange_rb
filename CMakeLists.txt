@@ -5,6 +5,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-return-type")
 add_executable(challange_rentbrella 
     ../src/rb-ihm.cpp
     ../src/message/message.cpp
+    ../src/message/messagevp.cpp
+    ../src/message/messagere.cpp
     ../src/protocol/protocolv1/backlight/message/backlight.cpp
     ../src/protocol/protocolv1/qrcode/message/qrcode.cpp
     ../src/protocol/protocolv1/backlight/mode/mode.cpp
@@ -17,6 +19,7 @@ add_executable(challange_rentbrella
     ../src/protocol/protocolv1/screen/confpicid/lowbyte.cpp
     ../src/protocol/protocolv1/screen/confpicid/factory/factory.cpp
     ../src/protocol/protocolv1/screen/message/screen.cpp
+    ../src/protocol/protocolv1/button/message/button.cpp
     ../src/ihm/ihm.cpp
     ../src/protocol/factory/factory.cpp
     ../src/protocol/protocolv1/protocolv1.cpp
@@ -34,6 +37,7 @@ target_include_directories(challange_rentbrella PRIVATE ${CMAKE_CURRENT_SOURCE_D
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confpicid
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/confpicid/factory
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/screen/message
+    PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/button/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/protocol/protocolv1/qrcode/message
     PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/includes/ihm

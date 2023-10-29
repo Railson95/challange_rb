@@ -6,7 +6,7 @@
 
 Backlight::Backlight(uint8_t frame_header_h,
                      uint8_t frame_header_l,
-                     uint8_t command) : Message(frame_header_h,
+                     uint8_t command) : MessageRE(frame_header_h,
                                                 frame_header_l,
                                                 command)
 
@@ -27,5 +27,15 @@ void Backlight::execute()
 
     this->process_and_send_data(data, generic_byte);
 
+}
+
+void Backlight::set_data(std::optional<std::vector<uint8_t>> data)
+{
+    Message::set_data(data);
+}
+
+void Backlight::set_register(std::optional<uint8_t> _register)
+{
+    Message::set_register(_register);
 }
 

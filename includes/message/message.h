@@ -23,9 +23,6 @@ public:
             uint8_t command);
     Message(const Message &other);
     ~Message();
-    uint16_t get_memory_max();
-    uint16_t get_memory_address();
-    uint8_t calc_byte_count();
     std::vector<uint8_t> get_bytes();
     std::vector<uint8_t> split_vp_address();
     uint8_t get_frame_header_h();
@@ -40,9 +37,9 @@ public:
     void set_register(std::optional<uint8_t> _register);
     void set_data(std::optional<std::vector<uint8_t>> data);
     void set_data(char *data);
+    void set_vp_address(std::optional<uint16_t> vp_address);
     void set_length(std::optional<uint8_t> lenght);
     void set_byte_count(uint8_t byte_count);
-    void set_vp_address(std::optional<uint16_t> vp_address);
     void process_and_send_data(const std::optional<std::vector<uint8_t>> &data,
                                std::optional<std::unique_ptr<IGenericByte>> &generic_byte);
 };

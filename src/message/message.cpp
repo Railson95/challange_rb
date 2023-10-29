@@ -81,6 +81,16 @@ void Message::set_data(std::optional<std::vector<uint8_t>> data)
     this->data = data;
 }
 
+void Message::set_length(std::optional<uint8_t> lenght)
+{
+    this->lenght = lenght;
+}
+
+void Message::set_byte_count(uint8_t byte_count)
+{
+    this->byte_count = byte_count;
+}
+
 void Message::set_data(char *data)
 {
     if (nullptr == data)
@@ -103,14 +113,9 @@ void Message::set_data(char *data)
     this->data = result;
 }
 
-void Message::set_length(std::optional<uint8_t> lenght)
+void Message::set_vp_address(std::optional<uint16_t> vp_address)
 {
-    this->lenght = lenght;
-}
-
-void Message::set_byte_count(uint8_t byte_count)
-{
-    this->byte_count = byte_count;
+    this->vp_address = vp_address;
 }
 
 std::vector<uint8_t> Message::get_bytes()
@@ -157,11 +162,6 @@ bool Message::is_memory_overflow()
     return false;
 }
 
-void Message::set_vp_address(std::optional<uint16_t> vp_address)
-{
-    this->vp_address = vp_address;
-}
-
 std::vector<uint8_t> Message::split_vp_address()
 {
     const std::type_info &tipo = typeid(this);
@@ -185,45 +185,6 @@ std::vector<uint8_t> Message::split_vp_address()
     splited.push_back(high_byte);
 
     return splited;
-}
-
-uint8_t Message::calc_byte_count()
-{
-    uint8_t size_lenght = (this->get_lenght().has_value()) ? 1 : 0;
-    uint8_t size_data = (this->get_data().has_value()) ? this->get_data().value().size() : 0;
-    size_t cmd_reg = 2; // lenght cmd plus register
-
-    if (this->get_lenght().has_value() && this->get_data().has_value())
-    {
-        return size_lenght + size_data + cmd_reg;
-    }
-
-    if (this->get_lenght().has_value())
-    {
-        return size_lenght + cmd_reg;
-    }
-
-    if (this->get_data().has_value())
-    {
-        return this->get_data().value().size() + cmd_reg;
-    }
-    return 0;
-}
-
-uint16_t Message::get_memory_max()
-{
-    return 0xFF;
-}
-
-uint16_t Message::get_memory_address()
-{
-    std::optional<uint8_t> _register = get_register();
-    if (!_register.has_value())
-    {
-        std::cout << "Invalid Register! " << std::endl;
-        return true;
-    }
-    return _register.value();
 }
 
 void Message::process_and_send_data(const std::optional<std::vector<uint8_t>> &data,

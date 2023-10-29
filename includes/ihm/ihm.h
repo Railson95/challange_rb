@@ -10,7 +10,6 @@ private:
     std::unique_ptr<IProtocol> protocol;
 public:
     Ihm(std::string protocol_type);
-    Ihm(const Ihm &other);
     ~Ihm();
     uint8_t get_backlight_level();
     void set_backlight_level(uint8_t operation_mode, uint8_t level);

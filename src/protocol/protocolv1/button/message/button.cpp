@@ -1,21 +1,19 @@
+#include "../protocol/protocolv1/button/message/button.h"
+#include "../message/messagere.h"
 
-#include "../protocol/protocolv1/qrcode/message/qrcode.h"
-#include "../message/messagevp.h"
-#include "../message/message.h"
-
-QRCode::QRCode(uint8_t frame_header_h,
+Button::Button(uint8_t frame_header_h,
                uint8_t frame_header_l,
-               uint8_t command) : MessageVP(frame_header_h,
+               uint8_t command) : MessageRE(frame_header_h,
                                           frame_header_l,
                                           command)
 {
 }
 
-QRCode::~QRCode()
+Button::~Button()
 {
 }
 
-void QRCode::execute()
+void Button::execute()
 {
     std::optional<std::vector<uint8_t>> data = this->get_data();
     std::optional<std::unique_ptr<IGenericByte>> opcional1 = std::nullopt;
@@ -25,15 +23,12 @@ void QRCode::execute()
     this->process_and_send_data(data, opcional1);
 }
 
-void QRCode::set_data(char *data)
+void Button::set_data(char *data)
 {
     Message::set_data(data);
 }
 
-void QRCode::set_vp_address(std::optional<uint16_t> vp_address)
+void Button::set_vp_address(std::optional<uint16_t> vp_address)
 {
     Message::set_vp_address(vp_address);
 }
-
-
-
